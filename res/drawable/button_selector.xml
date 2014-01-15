@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/button_active_bg" android:state_focused="false" android:state_pressed="true"/>
+    <item android:state_focused="false" android:state_pressed="false"><shape android:shape="rectangle">
+            <solid android:color="#F7F7F7" />
+
+            <stroke android:width="2dip" android:color="#666666" />
+
+            <padding android:bottom="7dp" android:left="7dp" android:right="7dp" android:top="7dp" />
+
+            <corners android:radius="5dp" />
+
+            <gradient android:angle="135" android:endColor="#D7D7D7" android:startColor="#F7F7F7" />
+        </shape></item>
+
+</selector>

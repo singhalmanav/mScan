@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F7F7F7" >
+
+    <FrameLayout
+        android:id="@+id/title_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:background="@drawable/header_back"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:typeface="serif" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/main_menu_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/title_container"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="7dip"
+        android:layout_marginRight="7dip"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/messageinbound_border"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/heading_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select File"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:typeface="serif" />
+
+        <TextView
+            android:id="@+id/heading_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dip"
+            android:text="Current Path - /sdcard/"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:typeface="serif" />
+
+        <ListView
+            android:id="@+id/file_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#F7F7F7"
+            android:layout_marginTop="10dip"
+            android:cacheColorHint="@android:color/transparent" >
+        </ListView>
+    </LinearLayout>
+
+</RelativeLayout>

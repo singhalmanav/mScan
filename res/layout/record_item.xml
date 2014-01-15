@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dip" >
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="60dip"
+        android:layout_height="60dip"
+        android:layout_marginRight="10dip"
+        android:src="@drawable/record" />
+
+    <TextView
+        android:id="@+id/firstLine"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/icon"
+        android:gravity="center_vertical"
+        android:text="Tag Content"
+        android:textColor="#663300"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:typeface="serif" />
+
+    <TextView
+        android:id="@+id/secondLine"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/firstLine"
+        android:layout_toRightOf="@id/icon"
+        android:text="File Path"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:typeface="serif" />
+
+    <TextView
+        android:id="@+id/thirdLine"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/secondLine"
+        android:layout_toRightOf="@id/icon"
+        android:text="Time Stamp"
+        android:textColor="#000000"
+        android:typeface="serif" />
+
+</RelativeLayout>

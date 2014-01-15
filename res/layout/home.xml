@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F7F7F7" >
+
+    <FrameLayout
+        android:id="@+id/title_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:background="@drawable/header_back"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:typeface="serif" />
+
+        <ImageView
+            android:id="@+id/title_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingRight="10dip"
+            android:paddingTop="07dip"
+            android:src="@drawable/info_icon" />
+    </FrameLayout>
+
+    <ScrollView
+        android:id="@+id/scroll_data_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/title_container"
+        android:layout_marginBottom="7dip"
+        android:layout_marginLeft="7dip"
+        android:layout_marginRight="7dip"
+        android:layout_marginTop="7dip"
+        android:background="@drawable/messageinbound_border" >
+
+        <LinearLayout
+            android:id="@+id/menu_box"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/file_image_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:src="@drawable/welcome" 
+                android:layout_gravity="center"/>
+
+            <RelativeLayout
+                android:id="@+id/file_upload_container"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="7dip"
+                android:layout_marginLeft="7dip"
+                android:layout_marginRight="7dip"
+                android:layout_marginTop="7dip"
+                android:layout_weight="1"
+                android:background="@drawable/button_selector" >
+
+                <ImageView
+                    android:id="@+id/file_image_icon"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="10dip"
+                    android:background="@drawable/messageinbound_border_back"
+                    android:src="@drawable/scan" />
+
+                <TextView
+                    android:id="@+id/upload_heading"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:layout_marginRight="05dip"
+                    android:layout_toRightOf="@+id/file_image_icon"
+                    android:text="Scan File"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+
+                <TextView
+                    android:id="@+id/upload_description"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/upload_heading"
+                    android:layout_marginRight="10dip"
+                    android:layout_toRightOf="@+id/file_image_icon"
+                    android:paddingBottom="10dip"
+                    android:text="Select file or folder to scan online with multiple anti-malware engines"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    android:typeface="serif" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/scan_data_container"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@+id/file_upload_container"
+                android:layout_marginBottom="7dip"
+                android:layout_marginLeft="7dip"
+                android:layout_marginRight="7dip"
+                android:layout_marginTop="7dip"
+                android:layout_weight="1"
+                android:background="@drawable/button_selector" >
+
+                <ImageView
+                    android:id="@+id/image_icon"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="10dip"
+                    android:background="@drawable/messageinbound_border_back"
+                    android:src="@drawable/scan_result" />
+
+                <TextView
+                    android:id="@+id/scan_result_heading"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:layout_marginRight="05dip"
+                    android:layout_toRightOf="@+id/image_icon"
+                    android:text="Scan Results"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+
+                <TextView
+                    android:id="@+id/scan_result_description"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/scan_result_heading"
+                    android:layout_marginRight="10dip"
+                    android:layout_toRightOf="@+id/image_icon"
+                    android:paddingBottom="10dip"
+                    android:text="View detailed reports for files scanned online"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    android:typeface="serif" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:padding="6dip" >
+
+    <ImageView
+        android:id="@+id/tickImage"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_marginRight="05dip"
+        android:src="@drawable/tick" />
+
+    <TextView
+        android:id="@+id/AVName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tickImage"
+        android:gravity="center_vertical"
+        android:text="Tag Content"
+        android:textColor="#663300"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:typeface="serif" />
+
+    <TextView
+        android:id="@+id/DefTime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AVName"
+        android:layout_toRightOf="@+id/tickImage"
+        android:text="Def Time"
+        android:textColor="#000066"
+        android:textStyle="italic"
+        android:typeface="serif" />
+
+    <TextView
+        android:id="@+id/ScanTime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AVName"
+        android:layout_toRightOf="@+id/tickImage"
+        android:gravity="right"
+        android:text="Scan Time"
+        android:textColor="#000066"
+        android:textStyle="italic"
+        android:typeface="serif" />
+
+    <TextView
+        android:id="@+id/ThreatInfo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/DefTime"
+        android:layout_toRightOf="@+id/tickImage"
+        android:text="Threat Info"
+        android:textColor="#000066"
+        android:textStyle="bold"
+        android:typeface="serif" />
+
+</RelativeLayout>
