@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dp" >
+
+    <ImageView
+        android:id="@+id/label"
+        android:layout_width="45dip"
+        android:layout_height="45dip"
+        android:layout_gravity="left"
+        android:paddingLeft="05dip"
+        android:paddingTop="07dip"
+        android:src="@drawable/settings" />
+
+    <TextView
+        android:id="@+id/box_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/label"
+        android:text="Enter API Key"
+        android:paddingTop="07dip"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/api_key_editbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label"
+        android:layout_marginTop="10dip" >
+
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>

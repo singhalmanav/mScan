@@ -56,7 +56,7 @@ public class ReportDetailedInfo extends Activity {
 	int[] icon_images;
 
 	ListView reportList;
-	ImageView icon_image,titleIcon;
+	ImageView icon_image,titleIcon, settings_button;
 
 	/* Define Anti-Virus Engines */
 	String[] AV_list = {"AegisLab","Agnitum","Ahnlab","Antiy","AVG","Avira","BitDefender","ByteHero","ClamWin","Commtouch",
@@ -71,6 +71,7 @@ public class ReportDetailedInfo extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.report_layout);
 
+		/* Retrieving Values from previous Activity */
 		Bundle extra=this.getIntent().getExtras();
 		output = extra.getString("scanOutput");
 		total_avs = extra.getInt("total_avs");
@@ -80,6 +81,14 @@ public class ReportDetailedInfo extends Activity {
 		defTime_array = new String[total_avs];
 		scanTime_array = new String[total_avs];
 		threatInfo_array = new String[total_avs];
+
+		/* OnClick Handler for Settings Button */
+		settings_button = (ImageView) findViewById(R.id.setings_button);
+		settings_button.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				startActivity(new Intent(getBaseContext(),Settings.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+			}
+		});
 
 		/* Parsing of the JSONObject and retrieving useful information */
 		try{
@@ -125,7 +134,6 @@ public class ReportDetailedInfo extends Activity {
 		/* Setting Image Icon for 'Right' or 'Wrong' icon as per Threat Found 
 		 * If Thread Not found, set 'Right' icon Image
 		 * If Threat Found, set 'Wrong' icon Image */
-		
 		icon_images=new int[total_avs];
 		for (int i=0;i<AVName_array.length;i++)
 		{

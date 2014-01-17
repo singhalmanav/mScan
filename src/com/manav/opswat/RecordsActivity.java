@@ -38,6 +38,7 @@ public class RecordsActivity extends Activity {
 	String[] data_ids, fileLocations, scanned_at, fileNames;
 	String data_id_to_delete;
 	TextView title, titleDesc;
+	ImageView settings_button;
 
 	/* Declare Alert Dialog Box - For deleting record */
 	AlertDialog.Builder builder;
@@ -53,6 +54,7 @@ public class RecordsActivity extends Activity {
 		title.setText("Scanned Reports");
 		titleDesc = (TextView) findViewById(R.id.heading_desc);
 		titleDesc.setVisibility(View.GONE);
+		settings_button = (ImageView) findViewById(R.id.setings_button);
 
 		/* Initialize Alert Dialog Box for Deleting any record */
 		builder = new AlertDialog.Builder(this);
@@ -117,6 +119,12 @@ public class RecordsActivity extends Activity {
 			}
 		});
 
+		settings_button.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				startActivity(new Intent(getBaseContext(),Settings.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+			}
+		});
+
 	}
 
 	/* Method definition to load saved records into the list from the database */
@@ -135,11 +143,11 @@ public class RecordsActivity extends Activity {
 			int i=0;
 			while (cur.isAfterLast() == false) {
 				data_ids[i]=cur.getString(1);
-				
+
 				String file=cur.getString(2);
 				fileLocations[i] = file.substring(0, file.lastIndexOf("/")+1);
 				fileNames[i]= file.substring(file.lastIndexOf("/")+1, file.length());
-				
+
 				scanned_at[i]=DateFormat.getDateTimeInstance().format(new Date(cur.getLong(3)));
 				i++;
 				cur.moveToNext();

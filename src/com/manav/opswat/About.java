@@ -6,8 +6,11 @@
 package com.manav.opswat;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,7 +19,7 @@ public class About extends Activity
 {
 	/* Declare UI Widgets */
 	TextView title, first_label, second_label;
-	ImageView image_icon;
+	ImageView image_icon, settings_button;
 	LinearLayout adlayout;
 
 	protected void onCreate(Bundle savedInstanceState) 
@@ -28,7 +31,7 @@ public class About extends Activity
 		initialize();
 
 		String first_data="<b><font color=#000099>mScan</font></b> application allows you to harness the power of our "+
-				"cloud-based multi-scanning technology integrated directly into your mobile.";
+							"cloud-based multi-scanning technology integrated directly into your mobile.";
 		first_label.setText(Html.fromHtml(first_data));
 
 		String second_data="No single anti-malware engine is perfect 100% of the time. Using multiple engines to scan for threats "+
@@ -40,6 +43,13 @@ public class About extends Activity
 
 		/* Set Text for TextView */
 		second_label.setText(Html.fromHtml(second_data));
+
+		/* OnClick Handler for Settings Button */
+		settings_button.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				startActivity(new Intent(getBaseContext(),Settings.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+			}
+		});
 	}
 
 	/* Initialize Widgets Method Body Defined */
@@ -49,6 +59,7 @@ public class About extends Activity
 		first_label=(TextView) findViewById(R.id.first_label);
 		second_label=(TextView) findViewById(R.id.second_label);
 		image_icon=(ImageView) findViewById(R.id.image);
+		settings_button = (ImageView) findViewById(R.id.setings_button);
 	}
 
 }

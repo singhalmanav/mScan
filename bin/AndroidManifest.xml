@@ -33,6 +33,7 @@
         <activity android:name=".ReportInfoActivity" ></activity>
         <activity android:name=".ReportDetailedInfo" ></activity>
         <activity android:name=".About" ></activity>
+        <activity android:name=".Settings" ></activity>
         
     </application>
 
