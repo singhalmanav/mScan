@@ -74,6 +74,7 @@ public class FileHandling {
 				inputStream.close();
 			}
 			return sb.toString();
+			
 		} catch (Exception ex) {
 			Log.e("Error", ex.toString());
 			return null;

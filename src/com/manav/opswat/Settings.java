@@ -1,3 +1,8 @@
+/*
+ * @author manavsinghal
+ *	Settings.java - This activity is for the user to enter API Key and store it in Mobile Database.
+ */
+
 package com.manav.opswat;
 
 import android.app.Activity;
@@ -18,10 +23,12 @@ import android.widget.Toast;
 
 public class Settings extends Activity {
 
+	// UI Widgets Declaration 
 	TextView settings_label, api_key_label;
 	Button enter;
 	String settings_value, API_KEY_VALUE;
 
+	/* Shared Preferences Initialization */
 	SharedPreferences pref; // 0 - for private mode
 	Editor editor;
 
@@ -29,10 +36,12 @@ public class Settings extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.settings);
 
+		/* Initialization of UI Widgets */
 		settings_label = (TextView) findViewById(R.id.settings_msg);
 		api_key_label= (TextView) findViewById(R.id.api_key);
 		enter= (Button) findViewById(R.id.enter);
 
+		// Shared Preferences retrieving value 
 		pref = getApplicationContext().getSharedPreferences("api_pref", MODE_PRIVATE);
 		editor = pref.edit();
 
@@ -42,13 +51,16 @@ public class Settings extends Activity {
 				"scans and 100 hash lookups per hour. To extend your key to allow additional usage, "+
 				"please contact OPSWAT Sales at http://www.opswat.com/about/contact-us";
 
+		// Settings text for Label 
 		settings_label.setText(settings_value);
 		Linkify.addLinks(settings_label, Linkify.ALL);
 
+		// IF API Key is not set before
 		if(pref.getString("Api_Key", null) == null){
 			api_key_label.setText("No API Key Exist");
 			api_key_label.setTextColor(Color.RED);
 		}
+		// If API Key set then show it in label to the user.
 		else {
 			String api = pref.getString("Api_Key", null);
 			String first_chars_API = api.substring(0, api.length()-4);
@@ -57,6 +69,7 @@ public class Settings extends Activity {
 			api_key_label.setText("API Key- "+first_chars_API+last_chars_API);
 		}
 
+		/* OnClick Listener for Enter Button */
 		enter.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				promptDialogBox();
@@ -64,6 +77,7 @@ public class Settings extends Activity {
 		});
 	}
 
+	// Custom Prompt Box to the user for entering API Key
 	protected void promptDialogBox() {
 		// get prompts.xml view
 		LayoutInflater li = LayoutInflater.from(Settings.this);
@@ -73,6 +87,7 @@ public class Settings extends Activity {
 		// set prompts.xml to alertdialog builder
 		alertDialogBuilder.setView(promptsView);
 
+		// EditBox for the user to enter API Key 
 		final EditText userInput = (EditText) promptsView.findViewById(R.id.api_key_editbox);
 
 		// set dialog message

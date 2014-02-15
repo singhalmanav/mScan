@@ -65,7 +65,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/title_container"
-        android:layout_marginBottom="7dip"
+        android:layout_marginBottom="2dip"
         android:layout_marginLeft="7dip"
         android:layout_marginRight="7dip"
         android:layout_marginTop="7dip"
@@ -89,7 +89,7 @@
                 android:id="@+id/file_upload_container"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="7dip"
+                android:layout_marginBottom="2dip"
                 android:layout_marginLeft="7dip"
                 android:layout_marginRight="7dip"
                 android:layout_marginTop="7dip"
@@ -101,7 +101,7 @@
                     android:layout_width="50dip"
                     android:layout_height="50dip"
                     android:layout_alignParentLeft="true"
-                    android:layout_margin="10dip"
+                    android:layout_margin="05dip"
                     android:background="@drawable/messageinbound_border_back"
                     android:src="@drawable/scan" />
 
@@ -125,7 +125,7 @@
                     android:layout_below="@+id/upload_heading"
                     android:layout_marginRight="10dip"
                     android:layout_toRightOf="@+id/file_image_icon"
-                    android:paddingBottom="10dip"
+                    android:paddingBottom="05dip"
                     android:text="Select file or folder to scan online with multiple anti-malware engines"
                     android:textColor="#000000"
                     android:textSize="14sp"
@@ -138,10 +138,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_below="@+id/file_upload_container"
-                android:layout_marginBottom="7dip"
+                android:layout_marginBottom="2dip"
                 android:layout_marginLeft="7dip"
                 android:layout_marginRight="7dip"
-                android:layout_marginTop="7dip"
+                android:layout_marginTop="2dip"
                 android:layout_weight="1"
                 android:background="@drawable/button_selector" >
 
@@ -150,7 +150,7 @@
                     android:layout_width="50dip"
                     android:layout_height="50dip"
                     android:layout_alignParentLeft="true"
-                    android:layout_margin="10dip"
+                    android:layout_margin="05dip"
                     android:background="@drawable/messageinbound_border_back"
                     android:src="@drawable/scan_result" />
 
@@ -174,8 +174,57 @@
                     android:layout_below="@+id/scan_result_heading"
                     android:layout_marginRight="10dip"
                     android:layout_toRightOf="@+id/image_icon"
-                    android:paddingBottom="10dip"
+                    android:paddingBottom="05dip"
                     android:text="View detailed reports for files scanned online"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    android:typeface="serif" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/scan_system_container"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@+id/scan_data_container"
+                android:layout_marginBottom="2dip"
+                android:layout_marginLeft="7dip"
+                android:layout_marginRight="7dip"
+                android:layout_marginTop="2dip"
+                android:layout_weight="1"
+                android:background="@drawable/button_selector" >
+
+                <ImageView
+                    android:id="@+id/system_image_icon"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="05dip"
+                    android:background="@drawable/messageinbound_border_back"
+                    android:src="@drawable/scan_system" />
+
+                <TextView
+                    android:id="@+id/scan_system_heading"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:layout_marginRight="05dip"
+                    android:layout_toRightOf="@+id/system_image_icon"
+                    android:text="Scan System"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+
+                <TextView
+                    android:id="@+id/scan_system_description"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/scan_system_heading"
+                    android:layout_marginRight="10dip"
+                    android:layout_toRightOf="@+id/system_image_icon"
+                    android:paddingBottom="05dip"
+                    android:text="Scan the whole system against virus and malwares"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     android:textStyle="italic"

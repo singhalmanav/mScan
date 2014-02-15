@@ -69,7 +69,7 @@ public class FileUploader extends Activity {
 	ArrayList<String> files = new ArrayList<String>();
 	boolean folderFlag = false;
 	TextView currentPathLabel;
-	
+
 	/* Declaring Shared Preferences */
 	SharedPreferences pref; // 0 - for private mode
 	Editor editor;
@@ -77,6 +77,9 @@ public class FileUploader extends Activity {
 
 	/* Defines REST API URL */
 	private String URL = "https://api.metascan-online.com/v1/file";
+
+	/* Constant for files if file size is greater than 40 MB */
+	final String FILE_BIG_SIZE = "FILE_BIG_SIZE"; 
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -93,14 +96,14 @@ public class FileUploader extends Activity {
 		pref = getApplicationContext().getSharedPreferences("api_pref", MODE_PRIVATE);
 		editor = pref.edit();
 		API_KEY = pref.getString("Api_Key", null);
-		
+
 		/* OnClick Handler for Settings Button */
 		settings_button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				startActivity(new Intent(getBaseContext(),Settings.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			}
 		});
-		
+
 		/* Initialize Alert Dialog box (Yes/No) for asking user to scan File or not */
 		filebuilder = new AlertDialog.Builder(this);
 		filebuilder.setTitle("Confirm").setIcon(R.drawable.warning);
@@ -206,8 +209,7 @@ public class FileUploader extends Activity {
 
 		File[] flist = directory.listFiles();
 		for (File file : flist) {
-			if (file.isFile())
-			{
+			if (file.isFile()){
 				files.add(file.getAbsolutePath());
 			} else if (file.isDirectory()) {
 				listf(file.getAbsolutePath());
@@ -276,8 +278,8 @@ public class FileUploader extends Activity {
 			dataAdapter.open();
 			Cursor cur=dataAdapter.getAllTitles();
 
-			/* Check for 100 last records. In case of more than 100 records, it will delete last record (as per timestamp). */
-			if (cur.getCount() > 99){
+			/* Check for 200 last records. In case of more than 200 records, it will delete last record (as per timestamp). */
+			if (cur.getCount() > 199){
 				cur.moveToLast();
 				last_data_id=cur.getString(1);
 				dataAdapter.deleteTitle(last_data_id);
@@ -291,6 +293,17 @@ public class FileUploader extends Activity {
 			Toast.makeText(getBaseContext(), "Error\n"+ e.toString(), Toast.LENGTH_LONG).show();
 		}
 	}
+
+	/* Method to check File Size (in MB) */
+	private double getFileSize(String filePath){
+		File file = new File(filePath);
+
+		double bytes = file.length();
+		double kilobytes = (bytes / 1024);
+		double megabytes = (kilobytes / 1024);
+
+		return megabytes;
+	};
 
 	/* Method for making HTTP Request to Metascan REST API to upload the file content */
 	private class httpUploadCaller extends AsyncTask<Void, Void, Void>
@@ -328,65 +341,73 @@ public class FileUploader extends Activity {
 
 			if (folderFLAG == false)
 			{
-				/* Check for Images as files */
-				if (PATH.toLowerCase().endsWith(".jpg") || PATH.toLowerCase().endsWith(".jpeg") || PATH.toLowerCase().endsWith(".png") ||
-						PATH.toLowerCase().endsWith(".bmp") || PATH.toLowerCase().endsWith(".gif") || PATH.toLowerCase().endsWith(".webp"))
-				{
-					/* Getting Image Content and store as String */
-					fileData = FileHandling.getImageContent(PATH);
-					pDialog.setProgress(30);
+				double fileSize = getFileSize(PATH);
+
+				/* If File Size is greater than 40 MB, then it marks the file with big_file constant */
+				if (fileSize > 40){
+					data_id=FILE_BIG_SIZE;
 				}
 				else{
-					/* Getting File Content and store as String */
-					fileData = FileHandling.getFileContent(PATH);
-					pDialog.setProgress(30);
-				}
-
-				/* HTTP Client */ 
-				HttpParams myParams = new BasicHttpParams();
-				HttpConnectionParams.setConnectionTimeout(myParams, 10000);
-				HttpConnectionParams.setSoTimeout(myParams, 10000);
-				HttpClient httpclient = new DefaultHttpClient();
-
-				try {
-					/* HTTP Post and set header */
-					HttpPost httppost = new HttpPost(URL.toString());
-					httppost.setHeader("apikey", API_KEY);
-					httppost.setHeader("filename", fileName);
-
-					/* Setting file content as post body */
-					StringEntity se = new StringEntity(fileData); 
-					httppost.setEntity(se); 
-					HttpResponse response = httpclient.execute(httppost);
-					Log.e("STATUS",""+response.getStatusLine().getStatusCode());
-
-					/* Check Status Code for Response */
-					if (response.getStatusLine().getStatusCode() == 401 || response.getStatusLine().getStatusCode() == 403){
-						data_id="401";
-					}
-					else if (response.getStatusLine().getStatusCode() == 500){
-						data_id="500";
+					/* Check for Images as files */
+					if (PATH.toLowerCase().endsWith(".jpg") || PATH.toLowerCase().endsWith(".jpeg") || PATH.toLowerCase().endsWith(".png") ||
+							PATH.toLowerCase().endsWith(".bmp") || PATH.toLowerCase().endsWith(".gif") || PATH.toLowerCase().endsWith(".webp"))
+					{
+						/* Getting Image Content and store as String */
+						fileData = FileHandling.getImageContent(PATH);
+						pDialog.setProgress(30);
 					}
 					else{
-						in = response.getEntity().getContent();
-						if(in != null)
-							response_data = FileHandling.convertInputStreamToString(in);
-						else
-							response_data = "Did not work!";
-
-						jsonObject = new JSONObject(response_data);
-						data_id = jsonObject.getString("data_id");
-
-						pDialog.setProgress(80);
-						/* Method call for saving data_id into database */
-						saveDataID(data_id, PATH);
-						pDialog.setProgress(100);
+						/* Getting File Content and store as String */
+						fileData = FileHandling.getFileContent(PATH);
+						pDialog.setProgress(30);
 					}
 
-				} catch (Exception e) {
-					Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG).show();
-					return null;
-				} 
+					/* HTTP Client */ 
+					HttpParams myParams = new BasicHttpParams();
+					HttpConnectionParams.setConnectionTimeout(myParams, 10000);
+					HttpConnectionParams.setSoTimeout(myParams, 10000);
+					HttpClient httpclient = new DefaultHttpClient();
+
+					try {
+						/* HTTP Post and set header */
+						HttpPost httppost = new HttpPost(URL.toString());
+						httppost.setHeader("apikey", API_KEY);
+						httppost.setHeader("filename", fileName);
+
+						/* Setting file content as post body */
+						StringEntity se = new StringEntity(fileData); 
+						httppost.setEntity(se); 
+						HttpResponse response = httpclient.execute(httppost);
+						Log.e("STATUS",""+response.getStatusLine().getStatusCode());
+
+						/* Check Status Code for Response */
+						if (response.getStatusLine().getStatusCode() == 401 || response.getStatusLine().getStatusCode() == 403){
+							data_id="401";
+						}
+						else if (response.getStatusLine().getStatusCode() == 500){
+							data_id="500";
+						}
+						else{
+							in = response.getEntity().getContent();
+							if(in != null)
+								response_data = FileHandling.convertInputStreamToString(in);
+							else
+								response_data = "Did not work!";
+
+							jsonObject = new JSONObject(response_data);
+							data_id = jsonObject.getString("data_id");
+
+							pDialog.setProgress(80);
+							/* Method call for saving data_id into database */
+							saveDataID(data_id, PATH);
+							pDialog.setProgress(100);
+						}
+
+					} catch (Exception e) {
+						Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG).show();
+						return null;
+					}
+				}
 			}
 			else
 			{
@@ -399,16 +420,30 @@ public class FileUploader extends Activity {
 				/* Processing each file within the folder */
 				for (String eachfileLocation : files)
 				{
+					double fileSize = getFileSize(eachfileLocation);
+
+					/* Check file Size, if greater than 40 mb, ignore that file*/
+					if (fileSize > 40){
+						count++;
+						if (count <= filesCount){
+							/* Set Progress for Progress Bar */
+							pDialog.setProgress(Integer.parseInt(""+(int)((count*100)/filesCount)));
+						}
+						continue;
+					}
+
+					/* Check whether file is image or not */
 					if (eachfileLocation.toLowerCase().endsWith(".jpg") || eachfileLocation.toLowerCase().endsWith(".jpeg") || eachfileLocation.toLowerCase().endsWith(".png") ||
 							eachfileLocation.toLowerCase().endsWith(".bmp") || eachfileLocation.toLowerCase().endsWith(".gif") || eachfileLocation.toLowerCase().endsWith(".webp")){
 						/* Getting Image Content and store as String */
 						fileData = FileHandling.getImageContent(eachfileLocation);
 					}
 					else{
-						/* Getting File Content and store as String */
+						/* Getting File Content (other than Images) and store as String */
 						fileData = FileHandling.getFileContent(eachfileLocation);	
 					}
 
+					/* Getting File Name */
 					fileName = new File(eachfileLocation).getName();
 
 					/* HTTP Client */
@@ -447,8 +482,7 @@ public class FileUploader extends Activity {
 							saveDataID(data_id, eachfileLocation);
 
 							count++;
-							if (count <= filesCount)
-							{
+							if (count <= filesCount){
 								/* Set Progress for Progress Bar */
 								pDialog.setProgress(Integer.parseInt(""+(int)((count*100)/filesCount)));
 							}
@@ -471,7 +505,10 @@ public class FileUploader extends Activity {
 			pDialog.dismiss();
 
 			/* In case due to some reason, data_id == null */
-			if (data_id == null){
+			if (data_id.equals(FILE_BIG_SIZE)){
+				Toast.makeText(getBaseContext(), "File Size too big to scan online.", Toast.LENGTH_LONG).show();
+			}
+			else if (data_id == null){
 				Toast.makeText(getBaseContext(), "File could not be uploaded due to some error. Kindly try once again.", Toast.LENGTH_LONG).show();
 			}
 			/* In case of Response Status Code 40x */

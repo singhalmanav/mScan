@@ -7,11 +7,12 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="12" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -27,14 +28,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity android:name=".RecordsActivity" ></activity>
-        <activity android:name=".FileUploader" ></activity>
-        <activity android:name=".ReportInfoActivity" ></activity>
-        <activity android:name=".ReportDetailedInfo" ></activity>
-        <activity android:name=".About" ></activity>
-        <activity android:name=".Settings" ></activity>
-        
+        <activity android:name=".RecordsActivity" >
+        </activity>
+        <activity android:name=".FileUploader" >
+        </activity>
+        <activity android:name=".ReportInfoActivity" >
+        </activity>
+        <activity android:name=".ReportDetailedInfo" >
+        </activity>
+        <activity android:name=".About" >
+        </activity>
+        <activity android:name=".Settings" >
+        </activity>
+
+        <service
+            android:name=".SystemScanService"
+            android:enabled="true" />
     </application>
 
 </manifest>
