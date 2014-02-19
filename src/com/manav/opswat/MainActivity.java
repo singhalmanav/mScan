@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
 	String API_KEY;
 	
 	/* Boolean Flag for checking System_Scan_Service running in Background */
+	final Context context =this;
 	boolean serviceRunningFlag = false;
 
 	protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +116,7 @@ public class MainActivity extends Activity {
 				else{
 
 					/* Initialization of Alert Dialog Box */
-					final Dialog dialog = new Dialog(getBaseContext());
+					final Dialog dialog = new Dialog(context);
 					dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 					dialog.setContentView(R.layout.custom_dialog);
 

@@ -123,7 +123,7 @@ public class SystemScanService extends Service {
 			Cursor cur=dataAdapter.getAllTitles();
 
 			/* Check for 200 last records. In case of more than 200 records, it will delete last record (as per timestamp). */
-			if (cur.getCount() > 199){
+			if (cur.getCount() > 4999){
 				cur.moveToLast();
 				last_data_id=cur.getString(1);
 				dataAdapter.deleteTitle(last_data_id);

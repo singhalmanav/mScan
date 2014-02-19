@@ -8,6 +8,7 @@ package com.manav.opswat;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
@@ -75,6 +76,10 @@ public class Settings extends Activity {
 				promptDialogBox();
 			}
 		});
+	}
+	
+	public void onBackPressed() {
+	    startActivity(new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 	}
 
 	// Custom Prompt Box to the user for entering API Key
