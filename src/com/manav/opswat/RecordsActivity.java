@@ -51,7 +51,7 @@ public class RecordsActivity extends Activity {
 		/* Initialize UI Widgets */
 		recordList= (ListView) findViewById(R.id.file_list);
 		title = (TextView) findViewById(R.id.heading_label);
-		title.setText("Scanned Reports");
+		title.setText("Select Scanned File");
 		titleDesc = (TextView) findViewById(R.id.heading_desc);
 		titleDesc.setVisibility(View.GONE);
 		settings_button = (ImageView) findViewById(R.id.setings_button);

@@ -151,7 +151,7 @@ public class ReportDetailedInfo extends Activity {
 		reportList.setAdapter(reportListAdapter);
 
 		/* OnClick Handler for Menu button at top-right corner of screen */
-		titleIcon=(ImageView) findViewById(R.id.title_icon);
+		titleIcon=(ImageView) findViewById(R.id.home_icon);
 		titleIcon.setOnClickListener(new OnClickListener() 
 		{
 			public void onClick(View v) {

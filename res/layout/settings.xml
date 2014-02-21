@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/about_layout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="#F7F7F7" >
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/title_container"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:gravity="center" >
+        android:background="@drawable/header_back" >
 
         <TextView
             android:id="@+id/title"
             android:layout_width="fill_parent"
-            android:layout_height="50dip"
-            android:background="@drawable/header_back"
-            android:gravity="center"
+            android:layout_height="40dip"
+            android:gravity="top|center"
             android:text="@string/app_name"
             android:textColor="#FFFFFF"
-            android:textSize="26sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:typeface="serif" />
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:gravity="bottom|center"
+            android:text="Powered by Metascan Online"
+            android:textColor="#32B9D1"
+            android:textSize="14sp"
+            android:textStyle="bold|italic"
+            android:typeface="serif" />
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/main_data_container"
