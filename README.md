@@ -9,13 +9,13 @@ FEATURES
 
 When the user opens this application, it launches and opens with the home screen as shown in the figure below. Here the user has three options –
 
-•	Scan File
+•	Scan File - 
 The user can upload any file (up to 80 MB) or folder to scan it online using up to 40 anti-virus engines.
 
-•	Scan Results
+•	Scan Results - 
 The user can view the results of the files/folders scanned online with detailed information.
 
-•	Scan System
+•	Scan System - 
 The user can scan the whole system (mobile) also against various viruses and malwares. But this is a very network intensive process.
 
 
