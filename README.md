@@ -17,7 +17,3 @@ The user can view the results of the files/folders scanned online with detailed 
 
 •	Scan System - 
 The user can scan the whole system (mobile) also against various viruses and malwares. But this is a very network intensive process.
-
-![Home_Screen](https://raw2.github.com/singhalmanav/mScan/master/Snapshots/Home_Screen.png)
-![Scan_Screen](https://raw2.github.com/singhalmanav/mScan/master/Snapshots/Scan_Results_Info.png)
-![Result_Screen](https://raw2.github.com/singhalmanav/mScan/master/Snapshots/Scan_Result_Detailed.png)
