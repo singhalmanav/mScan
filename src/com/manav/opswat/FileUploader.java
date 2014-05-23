@@ -76,7 +76,7 @@ public class FileUploader extends Activity {
 	String API_KEY;
 
 	/* Defines REST API URL */
-	private String URL = "https://api.metascan-online.com/v1/file";
+	private String URL = "https://scan.metascan-online.com/v2/file";
 
 	/* Constant for files if file size is greater than 40 MB */
 	final String FILE_BIG_SIZE = "FILE_BIG_SIZE"; 

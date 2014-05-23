@@ -37,10 +37,11 @@ public class ReportInfoActivity extends Activity {
 	Button moreDetailsButton;
 
 	/* Declare REST API URL and API_KEY */
-	private String URL = "https://api.metascan-online.com/v1/file";
+	private String URL = "https://scan.metascan-online.com/v2/file";
 
 	JSONObject data_obj;
 	int total_time, percentage, total_avs;
+	//String file_id;
 	String start_time, scan_all_result_a, file_id, info_to_display, output= null, data_id;
 	int status_code = 200;
 	
@@ -158,6 +159,7 @@ public class ReportInfoActivity extends Activity {
 					file_id = data_obj.getString("file_id");
 					String scan_results = data_obj.getString("scan_results");
 					JSONObject scanObj = new JSONObject(scan_results);
+					
 					percentage = scanObj.getInt("progress_percentage");
 					total_time = scanObj.getInt("total_time");
 					total_avs = scanObj.getInt("total_avs");
@@ -193,14 +195,15 @@ public class ReportInfoActivity extends Activity {
 				report_info_label.setGravity(Gravity.CENTER_HORIZONTAL);
 				moreDetailsButton.setVisibility(View.INVISIBLE);
 			}
-			/* If Scanning Percentage is less than 100% */
-			else if (percentage<100 && status_code == 200)
+			/* If File_Id == null, then scan is in progress */
+			else if (file_id.equalsIgnoreCase("null"))
 			{
 				Toast.makeText(getBaseContext(), "Scanning is under process. Kindly check after some time.", Toast.LENGTH_LONG).show();
 				report_info_label.setText("Scanning is under process. Kindly check after some time.");
 				report_info_label.setGravity(Gravity.CENTER_HORIZONTAL);
 				moreDetailsButton.setVisibility(View.INVISIBLE);
 			}
+			
 			/* If Scanning of File is complete and result is available */
 			else if (status_code == 200)
 			{
