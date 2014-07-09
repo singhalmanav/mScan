@@ -228,6 +228,7 @@ public class FileUploader extends Activity {
 				Date lastModDate = new Date(ff.lastModified()); 
 				DateFormat formater = DateFormat.getDateTimeInstance();
 				String date_modify = formater.format(lastModDate);
+				
 				if(ff.isDirectory()){
 
 					File[] fbuf = ff.listFiles(); 
@@ -243,7 +244,7 @@ public class FileUploader extends Activity {
 					dir.add(new Item(ff.getName(),num_item,date_modify,ff.getAbsolutePath(),"directory_icon")); 
 				}
 				else{
-					fls.add(new Item(ff.getName(),ff.length() + " Byte", date_modify, ff.getAbsolutePath(),"file_icon"));
+					fls.add(new Item(ff.getName(),(ff.length()/1024) + " KB", date_modify, ff.getAbsolutePath(),"file_icon"));
 				}
 			}
 		}catch(Exception e){    

@@ -209,7 +209,7 @@ public class ReportInfoActivity extends Activity {
 			{
 				/* Storing information to display in String */
 				info_to_display ="<b> File ID- </b>"+file_id+" <br/><br/>"+
-						"<b> Start Time- </b>"+start_time+" <br/><br/>"+
+						"<b> Start Time (UTC)- </b>"+start_time+" <br/><br/>"+
 						"<b> Total Time (in ms)- </b>"+total_time+" <br/><br/>"+
 						"<b> Total AVS- </b>"+total_avs+" <br/><br/>"+
 						"<b> Percentage- </b>"+percentage+"% <br/><br/>"+
