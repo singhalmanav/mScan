@@ -1,7 +1,7 @@
-mScan - Powered by Metascan Online
+mScan
 =====
 
-mScan - Powered by Metascan Online Android application allows to harness the power of cloud-based multi-scanning technology using Metascan Online APIs. 
+mScan Android application allows to harness the power of cloud-based multi-scanning technology using Metascan Online APIs. 
 
 No single anti-malware engine is perfect 100% of the time. Using multiple engines to scan for threats allows you to take advantage of the strengths of each individual engine and to guarantee the earliest possible detection. This android app optimizes the included engines to enable fast, simultaneous scanning and eliminates the hassle of licensing multiple products.
 
